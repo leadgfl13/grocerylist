@@ -40,3 +40,13 @@ body {
 	flex-grow: 1;
 	background-color: rgb(23, 147, 109);
 }
+
+#formcontainer {
+	display: flex;
+	flex-direction: column;
+}
+
+#selectionbox {
+	display: flex;
+	gap: 2px;
+}
