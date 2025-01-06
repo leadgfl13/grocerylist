@@ -1,9 +1,5 @@
 import "./style.css";
 
-let testbutton = document.getElementById("test");
-testbutton.addEventListener("click", () => {
-	alert(chicken_soup.ingredients);
-});
 class Meal {
 	constructor(name, tags, ingredients) {
 		this.name = name;
