@@ -29,11 +29,25 @@ let venison_chili = new Meal(
 		"diced tomatos",
 	]
 );
+let marrymechicken = new Meal(
+	"Marry Me Chicken",
+	["chicken", "creamy", "hot"],
+
+	[
+		"Chicken",
+		"cream",
+		"garlic",
+		"chicken stock",
+		"chili beans",
+		"diced tomatos",
+	]
+);
+meallist.push(chicken_soup);
+meallist.push(marrymechicken);
 
 let submitbutton = document.getElementById("submit");
 submitbutton.addEventListener("click", () => {
-	var tags = makeBoxes(make_meal_list());
-	console.log(tags);
+	crossCheck(make_meal_list());
 });
 
 //Once submit button is clicked, goes through and gets all checked values
@@ -67,5 +81,26 @@ function makeBoxes(the_list) {
 		middle.append(newdiv);
 	}
 }
+
+//this checks to see if the tag elements are NOT in each food elements
+function crossCheck(thingy) {
+	middle.innerHTML = "";
+	for (let i = 0; i < meallist.length; i++) {
+		//for every meal in meal list
+		for (tagitem of thingy) {
+			//for every tag item
+			if (!meallist[i].tags.includes(tagitem)) {
+				//if the meallist item  tags dont include the tags
+				alert("It isn't there bro");
+			} else {
+				let mealbutton = document.createElement("button"); //if the mealist item tag does include the tags, make a meal button
+				mealbutton.innerHTML += meallist[i].name; //give the meal button the name of the meal list item
+
+				middle.append(mealbutton); //add the button to the middle
+			}
+		}
+	}
+}
+
 //I need a function to cross reference the values from one list, and see if they match
 //Then a function to create buttons based on the names in the list
