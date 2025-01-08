@@ -64,7 +64,6 @@ function make_meal_list() {
 		alert("Please make a selection");
 		return;
 	} else {
-		console.log(taglist);
 		return taglist;
 	}
 }
@@ -81,23 +80,42 @@ function makeBoxes(the_list) {
 		middle.append(newdiv);
 	}
 }
+//checks if the second array is a subset of the first array
+function isSubset(tagarray, mealarray) {
+	return tagarray.every((element) => mealarray.includes(element));
+}
 
+//need a function to create a button on the right side of the page if a meal is clicked to remove itself from the page
+function removeButton(specificbutton) {
+	specificbutton.remove();
+}
 //this checks to see if the tag elements are NOT in each food elements
 function crossCheck(thingy) {
 	middle.innerHTML = "";
-	for (let i = 0; i < meallist.length; i++) {
+	for (let el of meallist) {
 		//for every meal in meal list
-		for (tagitem of thingy) {
-			//for every tag item
-			if (!meallist[i].tags.includes(tagitem)) {
-				//if the meallist item  tags dont include the tags
-				alert("It isn't there bro");
-			} else {
-				let mealbutton = document.createElement("button"); //if the mealist item tag does include the tags, make a meal button
-				mealbutton.innerHTML += meallist[i].name; //give the meal button the name of the meal list item
+		console.log(thingy);
+		console.log(el.tags);
 
-				middle.append(mealbutton); //add the button to the middle
-			}
+		//calls checkMatch to see if a true value is returned if the search tags are a subset of the meal tags
+		if (isSubset(thingy, el.tags) == true) {
+			console.log(el.name);
+			let mealbutton = document.createElement("button"); //if the mealist item tag does include the tags, make a meal button
+			mealbutton.innerHTML += el.name; //give the meal button the name of the meal list item
+			mealbutton.addEventListener("click", () => {
+				//creates a button on the right side, and when the button is clicked it removes it from the right side
+				let mealfinal = document.createElement("button");
+				mealfinal.innerHTML = el.name;
+				mealfinal.addEventListener("click", () => {
+					removeButton(mealfinal);
+				});
+				midright.append(mealfinal);
+			});
+			middle.append(mealbutton); //add the button to the middle
+		} else {
+			//*** ISSUE HERE>  IT IS RETURNING TRUE FOR ALL?!? */
+			//if the meallist item  tags dont include the tags
+			alert("It isn't there bro");
 		}
 	}
 }
