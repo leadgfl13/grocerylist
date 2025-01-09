@@ -42,12 +42,19 @@ let marrymechicken = new Meal(
 		"diced tomatos",
 	]
 );
+
 meallist.push(chicken_soup);
 meallist.push(marrymechicken);
+meallist.push(venison_chili);
 
+let createlist = document.getElementById("create_list");
+const listofMeals = document.getElementById("meal_list");
 let submitbutton = document.getElementById("submit");
 submitbutton.addEventListener("click", () => {
 	crossCheck(make_meal_list());
+});
+createlist.addEventListener("click", () => {
+	makeList(listofMeals);
 });
 
 //Once submit button is clicked, goes through and gets all checked values
@@ -89,18 +96,26 @@ function isSubset(tagarray, mealarray) {
 function removeButton(specificbutton) {
 	specificbutton.remove();
 }
+
+//function to make an array of all the child elements of a div
+function makeList(divcontainer) {
+	const divElement = document.getElementById("meal_list");
+	const innerHtmlArray = Array.from(divElement.children).map(
+		(child) => child.innerHTML
+	);
+	console.log(innerHtmlArray);
+}
+//Make a function so when button is clicked, it
 //this checks to see if the tag elements are NOT in each food elements
 function crossCheck(thingy) {
 	middle.innerHTML = "";
 	for (let el of meallist) {
 		//for every meal in meal list
-		console.log(thingy);
-		console.log(el.tags);
-
 		//calls checkMatch to see if a true value is returned if the search tags are a subset of the meal tags
 		if (isSubset(thingy, el.tags) == true) {
 			console.log(el.name);
 			let mealbutton = document.createElement("button"); //if the mealist item tag does include the tags, make a meal button
+			mealbutton.setAttribute("id", "mealbutton");
 			mealbutton.innerHTML += el.name; //give the meal button the name of the meal list item
 			mealbutton.addEventListener("click", () => {
 				//creates a button on the right side, and when the button is clicked it removes it from the right side
@@ -109,16 +124,12 @@ function crossCheck(thingy) {
 				mealfinal.addEventListener("click", () => {
 					removeButton(mealfinal);
 				});
-				midright.append(mealfinal);
+				meal_list.append(mealfinal);
 			});
 			middle.append(mealbutton); //add the button to the middle
 		} else {
 			//*** ISSUE HERE>  IT IS RETURNING TRUE FOR ALL?!? */
 			//if the meallist item  tags dont include the tags
-			alert("It isn't there bro");
 		}
 	}
 }
-
-//I need a function to cross reference the values from one list, and see if they match
-//Then a function to create buttons based on the names in the list
