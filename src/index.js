@@ -46,15 +46,17 @@ let marrymechicken = new Meal(
 meallist.push(chicken_soup);
 meallist.push(marrymechicken);
 meallist.push(venison_chili);
-
+//when you submit the tags
 let createlist = document.getElementById("create_list");
 const listofMeals = document.getElementById("meal_list");
 let submitbutton = document.getElementById("submit");
 submitbutton.addEventListener("click", () => {
 	crossCheck(make_meal_list());
 });
+//when you click the make a grocery list
 createlist.addEventListener("click", () => {
-	makeList(listofMeals);
+	let htmllist = makeList(listofMeals);
+	makeAList(htmllist, meallist);
 });
 
 //Once submit button is clicked, goes through and gets all checked values
@@ -75,23 +77,28 @@ function make_meal_list() {
 	}
 }
 
-function makeBoxes(the_list) {
-	middle.innerHTML = "";
-	if (!the_list) {
-		return;
-	}
-	for (let i = 0; i < the_list.length; i++) {
-		let newdiv = document.createElement("div");
-		newdiv.setAttribute("class", "mealbox");
-		newdiv.innerHTML = the_list[i];
-		middle.append(newdiv);
-	}
-}
 //checks if the second array is a subset of the first array
 function isSubset(tagarray, mealarray) {
 	return tagarray.every((element) => mealarray.includes(element));
 }
 
+//make a function to take the array of innerHTML, check to see if it matches the meal array, and if so, print the tags from the matching meal
+function makeAList(htmlarray, mealarray) {
+	for (let i = 0; i < htmlarray.length; i++) {
+		for (let j = 0; j < mealarray.length; j++) {
+			if (htmlarray[i] === mealarray[j].name) {
+				alert(
+					"The meal is " +
+						mealarray[j].name +
+						"ingredients include " +
+						mealarray[j].ingredients
+				);
+			} else {
+				console.log("No match");
+			}
+		}
+	}
+}
 //need a function to create a button on the right side of the page if a meal is clicked to remove itself from the page
 function removeButton(specificbutton) {
 	specificbutton.remove();
@@ -103,6 +110,8 @@ function makeList(divcontainer) {
 	const innerHtmlArray = Array.from(divElement.children).map(
 		(child) => child.innerHTML
 	);
+	return innerHtmlArray;
+
 	console.log(innerHtmlArray);
 }
 //Make a function so when button is clicked, it
@@ -113,7 +122,6 @@ function crossCheck(thingy) {
 		//for every meal in meal list
 		//calls checkMatch to see if a true value is returned if the search tags are a subset of the meal tags
 		if (isSubset(thingy, el.tags) == true) {
-			console.log(el.name);
 			let mealbutton = document.createElement("button"); //if the mealist item tag does include the tags, make a meal button
 			mealbutton.setAttribute("id", "mealbutton");
 			mealbutton.innerHTML += el.name; //give the meal button the name of the meal list item
