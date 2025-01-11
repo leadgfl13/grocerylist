@@ -9,6 +9,8 @@ class Meal {
 }
 
 const meallist = [];
+//acts as the array to hold meals that are selected as possible options, stores them as the full objects
+let selectedmeals = [];
 
 let chicken_soup = new Meal(
 	"Chicken soup",
@@ -46,6 +48,7 @@ let marrymechicken = new Meal(
 meallist.push(chicken_soup);
 meallist.push(marrymechicken);
 meallist.push(venison_chili);
+
 //when you submit the tags
 let createlist = document.getElementById("create_list");
 const listofMeals = document.getElementById("meal_list");
@@ -77,6 +80,17 @@ function make_meal_list() {
 	}
 }
 
+function addSelection(themeal) {
+	for (let i = 0; i < meallist.length; i++) {
+		if (themeal.innerHTML === meallist[i].name) {
+			let newmeal = meallist[i];
+			selectedmeals.push(newmeal);
+			console.log(selectedmeals);
+		} else {
+			alert("No match");
+		}
+	}
+}
 //checks if the second array is a subset of the first array
 function isSubset(tagarray, mealarray) {
 	return tagarray.every((element) => mealarray.includes(element));
@@ -126,6 +140,8 @@ function crossCheck(thingy) {
 			mealbutton.setAttribute("id", "mealbutton");
 			mealbutton.innerHTML += el.name; //give the meal button the name of the meal list item
 			mealbutton.addEventListener("click", () => {
+				addSelection(mealbutton);
+				//*** THIS IS WHAT NEEDS TO CHANGE  ADD SELECTION FUNCTION */
 				//creates a button on the right side, and when the button is clicked it removes it from the right side
 				let mealfinal = document.createElement("button");
 				mealfinal.innerHTML = el.name;
