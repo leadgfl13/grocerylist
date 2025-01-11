@@ -51,13 +51,10 @@ meallist.push(marrymechicken);
 meallist.push(venison_chili);
 
 // global variables
+let middle = document.getElementById("middle");
 let createlist = document.getElementById("create_list");
 const listofMeals = document.getElementById("meal_list");
 let submitbutton = document.getElementById("submit");
-//checks if the second array is a subset of the first array
-function isSubset(tagarray, mealarray) {
-	return tagarray.every((element) => mealarray.includes(element));
-}
 
 //Once submit button is clicked, goes through and gets all checked values
 //Turns the values into an array called taglist.  Everytime it is clicked it wipes it clean and remakes the list
@@ -77,25 +74,45 @@ function make_meal_list() {
 	}
 }
 
+//checks if the second array is a subset of the first array
+function isSubset(tagarray, mealarray) {
+	return tagarray.every((element) => mealarray.includes(element));
+}
+
 //Make a function so when button is clicked, it
 //this checks to see if the tag elements are in each food elements
 function crossCheck(thingy) {
 	middle.innerHTML = "";
 	possiblemeals = [];
 
-	for (let el of meallist) {
-		//for every el in meal list
-		//calls checkMatch to see if a true value is returned if the search tags are a subset of the meal tags
-		if (isSubset(thingy, el.tags) == true) {
-			let possiblemeal = el;
+	for (let meal of meallist) {
+		//for every meal in meal list
+		//calls isSubset to see if the tagarray matches the tag array of that meal.
+		//If theres a match, create a new copy of the meal, and then put it into an array of possible meals
+		if (isSubset(thingy, meal.tags) == true) {
+			let possiblemeal = meal;
 			possiblemeals.push(possiblemeal);
 		}
 	}
 	console.log(possiblemeals);
 }
 
-//when you submit the tags
+function makeElement(type, identity, where, text) {
+	let poops = document.createElement(type);
+	poops.setAttribute("class", identity);
+	poops.innerHTML = text;
+	where.append(poops);
+}
+function displayPossibles() {
+	for (let i = 0; i < possiblemeals.length; i++) {
+		console.log("Hello");
+	}
+}
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 submitbutton.addEventListener("click", () => {
 	crossCheck(make_meal_list());
+	for (let i = 0; i < possiblemeals.length; i++) {
+		makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
+	}
 });

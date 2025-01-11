@@ -54,7 +54,7 @@ body {
 	background-color: rgb(23, 147, 109);
 }
 
-#mealbutton {
+.possiblemeal {
 	height: 100px;
 	width: 100px;
 }
