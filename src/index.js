@@ -110,23 +110,23 @@ function addToGroceryList(themeal) {
 		if (themeal.innerHTML === meallist[i].name) {
 			let finalmeal = meallist[i];
 			finallist.push(finalmeal);
+			console.log(finallist);
 		}
 	}
-	console.log(finallist);
-	displayMeals(finallist);
+	displayMeals();
 }
-
+//removes some item from an array
 function Remove(thingy) {
-	console.log(thingy);
-	console.log("removing " + thingy);
-	finallist.splice(thingy, 1);
+	console.log("this is an array?");
 	console.log(finallist);
+	console.log("position in array");
+	finallist.splice(thingy, 1);
 	displayMeals(finallist);
 }
-
-function displayMeals(finallist) {
-	console.log(finallist);
+//displays the meals in finallist as buttons
+function displayMeals() {
 	midright.innerHTML = "";
+	console.log("This is the begininning of display meals " + finallist);
 	for (let i = 0; i < finallist.length; i++) {
 		let finalbutton = document.createElement("button");
 		finalbutton.setAttribute("class", "listmeal");
@@ -140,7 +140,8 @@ function displayMeals(finallist) {
 			finalbutton.innerHTML = finallist[i].name;
 		});
 		finalbutton.addEventListener("click", () => {
-			Remove(finallist[i]);
+			finallist.splice([i], 1);
+			displayMeals();
 		});
 	}
 }
