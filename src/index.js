@@ -12,6 +12,7 @@ const meallist = [];
 let possiblemeals = [];
 //acts as the array to hold meals that are selected as possible options, stores them as the full objects
 let selectedmeals = [];
+let finallist = [];
 
 let chicken_soup = new Meal(
 	"Chicken soup",
@@ -58,7 +59,7 @@ let submitbutton = document.getElementById("submit");
 
 //Once submit button is clicked, goes through and gets all checked values
 //Turns the values into an array called taglist.  Everytime it is clicked it wipes it clean and remakes the list
-function make_meal_list() {
+function getTags() {
 	let taglist = [];
 	const checkboxes = document.querySelectorAll(
 		'input[type="checkbox"]:checked'
@@ -78,10 +79,8 @@ function make_meal_list() {
 function isSubset(tagarray, mealarray) {
 	return tagarray.every((element) => mealarray.includes(element));
 }
-
-//Make a function so when button is clicked, it
 //this checks to see if the tag elements are in each food elements
-function crossCheck(thingy) {
+function crossCheck(taglist) {
 	middle.innerHTML = "";
 	possiblemeals = [];
 
@@ -89,29 +88,66 @@ function crossCheck(thingy) {
 		//for every meal in meal list
 		//calls isSubset to see if the tagarray matches the tag array of that meal.
 		//If theres a match, create a new copy of the meal, and then put it into an array of possible meals
-		if (isSubset(thingy, meal.tags) == true) {
+		if (isSubset(taglist, meal.tags) == true) {
 			let possiblemeal = meal;
 			possiblemeals.push(possiblemeal);
 		}
 	}
-	console.log(possiblemeals);
 }
 
+//makes buttons for the meals based on the tags that match
 function makeElement(type, identity, where, text) {
 	let poops = document.createElement(type);
 	poops.setAttribute("class", identity);
 	poops.innerHTML = text;
 	where.append(poops);
+	poops.addEventListener("click", () => addToGroceryList(poops));
 }
-function displayPossibles() {
-	for (let i = 0; i < possiblemeals.length; i++) {
-		console.log("Hello");
+
+//when the meal button is pressed, make sure that it matches a meal, and then add that meal object to a final array
+function addToGroceryList(themeal) {
+	for (let i = 0; i < meallist.length; i++) {
+		if (themeal.innerHTML === meallist[i].name) {
+			let finalmeal = meallist[i];
+			finallist.push(finalmeal);
+		}
+	}
+	console.log(finallist);
+	displayMeals(finallist);
+}
+
+function Remove(thingy) {
+	console.log(thingy);
+	console.log("removing " + thingy);
+	finallist.splice(thingy, 1);
+	console.log(finallist);
+	displayMeals(finallist);
+}
+
+function displayMeals(finallist) {
+	console.log(finallist);
+	midright.innerHTML = "";
+	for (let i = 0; i < finallist.length; i++) {
+		let finalbutton = document.createElement("button");
+		finalbutton.setAttribute("class", "listmeal");
+		finalbutton.setAttribute("id", "button"[i]);
+		finalbutton.innerHTML = finallist[i].name;
+		midright.append(finalbutton);
+		finalbutton.addEventListener("mouseover", () => {
+			finalbutton.innerHTML = finallist[i].ingredients;
+		});
+		finalbutton.addEventListener("mouseleave", () => {
+			finalbutton.innerHTML = finallist[i].name;
+		});
+		finalbutton.addEventListener("click", () => {
+			Remove(finallist[i]);
+		});
 	}
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 submitbutton.addEventListener("click", () => {
-	crossCheck(make_meal_list());
+	crossCheck(getTags());
 	for (let i = 0; i < possiblemeals.length; i++) {
 		makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
 	}
