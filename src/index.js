@@ -13,6 +13,7 @@ let possiblemeals = [];
 //acts as the array to hold meals that are selected as possible options, stores them as the full objects
 let selectedmeals = [];
 let finallist = [];
+let list_of_meals = document.getElementById("meal_list");
 
 let chicken_soup = new Meal(
 	"Chicken soup",
@@ -56,6 +57,7 @@ let middle = document.getElementById("middle");
 let createlist = document.getElementById("create_list");
 const listofMeals = document.getElementById("meal_list");
 let submitbutton = document.getElementById("submit");
+let groceries = document.getElementById("groceries");
 
 //Once submit button is clicked, goes through and gets all checked values
 //Turns the values into an array called taglist.  Everytime it is clicked it wipes it clean and remakes the list
@@ -125,14 +127,14 @@ function Remove(thingy) {
 }
 //displays the meals in finallist as buttons
 function displayMeals() {
-	midright.innerHTML = "";
+	list_of_meals.innerHTML = "";
 	console.log("This is the begininning of display meals " + finallist);
 	for (let i = 0; i < finallist.length; i++) {
 		let finalbutton = document.createElement("button");
 		finalbutton.setAttribute("class", "listmeal");
 		finalbutton.setAttribute("id", "button"[i]);
 		finalbutton.innerHTML = finallist[i].name;
-		midright.append(finalbutton);
+		list_of_meals.append(finalbutton);
 		finalbutton.addEventListener("mouseover", () => {
 			finalbutton.innerHTML = finallist[i].ingredients;
 		});
@@ -146,10 +148,26 @@ function displayMeals() {
 	}
 }
 
+//need function for makeGroceryList
+
+function makeGroceryList() {
+	alert("I have been clicked");
+	for (let i = 0; i < finallist.length; i++) {
+		console.log("This is a meal " + " " + finallist[i].name);
+		console.log(
+			"And here are the ingredients" + " " + finallist[i].ingredients
+		);
+	}
+}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 submitbutton.addEventListener("click", () => {
 	crossCheck(getTags());
 	for (let i = 0; i < possiblemeals.length; i++) {
 		makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
 	}
+});
+
+groceries.addEventListener("click", () => {
+	makeGroceryList();
 });
