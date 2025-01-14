@@ -7,7 +7,15 @@ class Meal {
 		this.ingredients = ingredients;
 	}
 }
+class Ingredients {
+	constructor(name, location) {
+		(this.name = name), (this.location = location);
+	}
+}
 
+const chickenstock = new Ingredients("chicken stock", "produce");
+const onion = new Ingredients("onion", "produce");
+const chicken = new Ingredients("chicken", "meat");
 const meallist = [];
 let possiblemeals = [];
 //acts as the array to hold meals that are selected as possible options, stores them as the full objects
@@ -18,7 +26,7 @@ let list_of_meals = document.getElementById("meal_list");
 let chicken_soup = new Meal(
 	"Chicken soup",
 	["dinner", "soup", "hot", "chicken"],
-	["chicken stock", "onion", "celery", "carrots", "chicken"]
+	[chickenstock, onion, "celery", "carrots", chicken]
 );
 
 let venison_chili = new Meal(
@@ -148,15 +156,30 @@ function displayMeals() {
 	}
 }
 
-//need function for makeGroceryList
-
+function addmiddleTitle(doc, id, cls, inner) {
+	doc = document.createElement("div");
+	doc.setAttribute("id", id);
+	doc.setAttribute("class", cls);
+	doc.innerHTML = inner;
+	middle.append(doc);
+}
+//Need a function to organize ingredients based on Location
+//need function for makeGroceryList, uses I to loop through the meals, then J to loop through ingredient object.
 function makeGroceryList() {
+	//convert the middle page to the list of groceries
+	middle.innerHTML = "";
+	middle.setAttribute("id", "grocerymiddle");
+	addmiddleTitle("dairytitle", "title1", "title", "Dairy");
+	addmiddleTitle("Produce", "title2", "title", "Produce");
+	addmiddleTitle("Bread", "title3", "title", "Breads");
+	addmiddleTitle("Meats", "title4", "title", "Meats");
 	alert("I have been clicked");
 	for (let i = 0; i < finallist.length; i++) {
 		console.log("This is a meal " + " " + finallist[i].name);
-		console.log(
-			"And here are the ingredients" + " " + finallist[i].ingredients
-		);
+		console.log("Produce Items Include: ");
+		for (let j = 0; j < finallist[i].ingredients.length; j++)
+			if (finallist[i].ingredients[j].location === "produce")
+				console.log(finallist[i].ingredients[j].name);
 	}
 }
 
