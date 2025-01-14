@@ -156,6 +156,7 @@ function displayMeals() {
 	}
 }
 
+//adds the titles to the grocery list
 function addmiddleTitle(doc, id, cls, inner) {
 	doc = document.createElement("div");
 	doc.setAttribute("id", id);
@@ -163,26 +164,57 @@ function addmiddleTitle(doc, id, cls, inner) {
 	doc.innerHTML = inner;
 	middle.append(doc);
 }
-//Need a function to organize ingredients based on Location
-//need function for makeGroceryList, uses I to loop through the meals, then J to loop through ingredient object.
+
+function addProduceButton(theitem) {
+	let produce = document.getElementById("cell01");
+	var produceitem = document.createElement("button");
+	produceitem.setAttribute("class", "listitems");
+	produceitem.innerHTML = theitem.name;
+	produce.append(produceitem);
+}
+
+function addProduceOne(finallist, ingredients, location, cell) {
+	for (let i = 0; i < finallist.length; i++) {
+		for (let j = 0; j < finallist[i].ingredients.length; j++) {
+			if (finallist[i].ingredients[j].location === location) {
+				let produce = document.getElementById(cell); //gets the cell and assigns it a name
+				var produceitem = document.createElement("button");
+				produceitem.setAttribute("class", "listitems");
+				produceitem.innerHTML = finallist[i].ingredients[j].name;
+				produce.append(produceitem);
+			}
+		}
+	}
+}
+
 function makeGroceryList() {
 	//convert the middle page to the list of groceries
 	middle.innerHTML = "";
 	middle.setAttribute("id", "grocerymiddle");
+	makeGrid(2, 4);
+
 	addmiddleTitle("dairytitle", "title1", "title", "Dairy");
 	addmiddleTitle("Produce", "title2", "title", "Produce");
 	addmiddleTitle("Bread", "title3", "title", "Breads");
 	addmiddleTitle("Meats", "title4", "title", "Meats");
 	alert("I have been clicked");
-	for (let i = 0; i < finallist.length; i++) {
-		console.log("This is a meal " + " " + finallist[i].name);
-		console.log("Produce Items Include: ");
-		for (let j = 0; j < finallist[i].ingredients.length; j++)
-			if (finallist[i].ingredients[j].location === "produce")
-				console.log(finallist[i].ingredients[j].name);
-	}
+	//for every meal in the list
+	addProduceOne(finallist, finallist.ingredients, "produce", "cell01");
+	addProduceOne(finallist, finallist.ingredients, "dairy", "cell02");
+	addProduceOne(finallist, finallist.ingredients, "meat", "cell03");
 }
 
+function makeGrid(rows, cols) {
+	let grid = document.getElementById("grocerymiddle");
+	for (let i = 0; i < rows; i++) {
+		for (let j = 0; j < cols; j++) {
+			const gridItem = document.createElement("div");
+			gridItem.id = `cell${i}${j}`;
+			gridItem.innerHTML = `cell${i}${j}`;
+			grid.appendChild(gridItem);
+		}
+	}
+}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 submitbutton.addEventListener("click", () => {
 	crossCheck(getTags());
