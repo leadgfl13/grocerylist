@@ -1,65 +1,11 @@
 import "./style.css";
+import { meallist } from "./meals";
 
-class Meal {
-	constructor(name, tags, ingredients) {
-		this.name = name;
-		this.tags = tags;
-		this.ingredients = ingredients;
-	}
-}
-class Ingredients {
-	constructor(name, location) {
-		(this.name = name), (this.location = location);
-	}
-}
-
-const cream = new Ingredients("cream", "dairy");
-const chickenstock = new Ingredients("chicken stock", "produce");
-const onion = new Ingredients("onion", "produce");
-const chicken = new Ingredients("chicken", "meat");
-const meallist = [];
 let possiblemeals = [];
 //acts as the array to hold meals that are selected as possible options, stores them as the full objects
 let selectedmeals = [];
 let finallist = [];
 let list_of_meals = document.getElementById("meal_list");
-
-let chicken_soup = new Meal(
-	"Chicken soup",
-	["dinner", "soup", "hot", "chicken"],
-	[chickenstock, onion, cream, "celery", "carrots", chicken]
-);
-
-let venison_chili = new Meal(
-	"Venison Chili",
-	["venison", "chili", "hot"],
-
-	[
-		"Venison",
-		"onion",
-		"garlic",
-		"chicken stock",
-		"chili beans",
-		"diced tomatos",
-	]
-);
-let marrymechicken = new Meal(
-	"Marry Me Chicken",
-	["chicken", "creamy", "hot"],
-
-	[
-		"Chicken",
-		"cream",
-		"garlic",
-		"chicken stock",
-		"chili beans",
-		"diced tomatos",
-	]
-);
-
-meallist.push(chicken_soup);
-meallist.push(marrymechicken);
-meallist.push(venison_chili);
 
 // global variables
 let middle = document.getElementById("middle");
@@ -211,7 +157,6 @@ function makeGrid(rows, cols) {
 			const gridItem = document.createElement("div");
 			gridItem.setAttribute("class", "gridlyfe");
 			gridItem.id = `cell${i}${j}`;
-			gridItem.innerHTML = `cell${i}${j}`;
 			grid.appendChild(gridItem);
 		}
 	}
