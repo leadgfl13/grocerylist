@@ -13,6 +13,7 @@ class Ingredients {
 	}
 }
 
+const cream = new Ingredients("cream", "dairy");
 const chickenstock = new Ingredients("chicken stock", "produce");
 const onion = new Ingredients("onion", "produce");
 const chicken = new Ingredients("chicken", "meat");
@@ -26,7 +27,7 @@ let list_of_meals = document.getElementById("meal_list");
 let chicken_soup = new Meal(
 	"Chicken soup",
 	["dinner", "soup", "hot", "chicken"],
-	[chickenstock, onion, "celery", "carrots", chicken]
+	[chickenstock, onion, cream, "celery", "carrots", chicken]
 );
 
 let venison_chili = new Meal(
@@ -144,7 +145,9 @@ function displayMeals() {
 		finalbutton.innerHTML = finallist[i].name;
 		list_of_meals.append(finalbutton);
 		finalbutton.addEventListener("mouseover", () => {
-			finalbutton.innerHTML = finallist[i].ingredients;
+			for (let j = 0; j < finallist[i].ingredients.length; j++) {
+				finalbutton.innerHTML += finallist[i].ingredients[j].name + " ";
+			}
 		});
 		finalbutton.addEventListener("mouseleave", () => {
 			finalbutton.innerHTML = finallist[i].name;
@@ -196,7 +199,7 @@ function makeGroceryList() {
 	alert("I have been clicked");
 	//for every meal in the list
 	addListElement(finallist, finallist.ingredients, "produce", "cell01");
-	addListElement(finallist, finallist.ingredients, "dairy", "cell02");
+	addListElement(finallist, finallist.ingredients, "dairy", "cell0");
 	addListElement(finallist, finallist.ingredients, "meat", "cell03");
 }
 
