@@ -160,12 +160,13 @@ function displayMeals() {
 }
 
 //adds the titles to the grocery list
-function addmiddleTitle(doc, id, cls, inner) {
+function addmiddleTitle(doc, id, cls, inner, cell) {
+	let box = document.getElementById(cell);
 	doc = document.createElement("div");
 	doc.setAttribute("id", id);
 	doc.setAttribute("class", cls);
 	doc.innerHTML = inner;
-	middle.append(doc);
+	box.append(doc);
 }
 
 function addListElement(finallist, ingredients, location, cell) {
@@ -192,15 +193,15 @@ function makeGroceryList() {
 	middle.setAttribute("id", "grocerymiddle");
 	makeGrid(2, 4);
 
-	addmiddleTitle("dairytitle", "title1", "title", "Dairy");
-	addmiddleTitle("Produce", "title2", "title", "Produce");
-	addmiddleTitle("Bread", "title3", "title", "Breads");
-	addmiddleTitle("Meats", "title4", "title", "Meats");
-	alert("I have been clicked");
+	addmiddleTitle("dairytitle", "title1", "title", "Dairy", "cell00");
+	addmiddleTitle("Produce", "title2", "title", "Produce", "cell01");
+	addmiddleTitle("Bread", "title3", "title", "Breads", "cell02");
+	addmiddleTitle("Meats", "title4", "title", "Meats", "cell03");
 	//for every meal in the list
-	addListElement(finallist, finallist.ingredients, "produce", "cell01");
-	addListElement(finallist, finallist.ingredients, "dairy", "cell0");
-	addListElement(finallist, finallist.ingredients, "meat", "cell03");
+	addListElement(finallist, finallist.ingredients, "produce", "cell11");
+	addListElement(finallist, finallist.ingredients, "dairy", "cell10");
+	addListElement(finallist, finallist.ingredients, "meat", "cell13");
+	addListElement(finallist, finallist.ingredients, "breads", "cell12");
 }
 
 function makeGrid(rows, cols) {
@@ -208,6 +209,7 @@ function makeGrid(rows, cols) {
 	for (let i = 0; i < rows; i++) {
 		for (let j = 0; j < cols; j++) {
 			const gridItem = document.createElement("div");
+			gridItem.setAttribute("class", "gridlyfe");
 			gridItem.id = `cell${i}${j}`;
 			gridItem.innerHTML = `cell${i}${j}`;
 			grid.appendChild(gridItem);
