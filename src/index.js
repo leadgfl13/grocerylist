@@ -214,9 +214,25 @@ function makeGrid(rows, cols) {
 		}
 	}
 }
+
+function makeGrid2(rows, cols) {
+	middle.innerHTML = "";
+	let grid2 = document.getElementById("middle");
+	grid2.setAttribute("id", "newgrid");
+	for (let i = 0; i < rows; i++) {
+		for (let j = 0; j < cols; j++) {
+			const gridelement = document.createElement("div");
+
+			gridelement.id = `gridel${i}${j}`;
+			gridelement.setAttribute("class", "gridelement");
+			grid2.appendChild(gridelement);
+		}
+	}
+}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 submitbutton.addEventListener("click", () => {
 	crossCheck(getTags());
+
 	for (let i = 0; i < possiblemeals.length; i++) {
 		makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
 	}

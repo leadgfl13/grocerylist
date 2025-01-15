@@ -30,9 +30,12 @@ body {
 	flex-grow: 4;
 	background-color: rgb(37, 45, 45);
 	display: grid;
-	grid-template-rows: (1fr, repeat);
-	grid-template-columns: (1fr, repeat);
+	justify-content: center;
+	align-items: center;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-gap: 10px;
+	padding: 10px;
 }
 
 #midright {
@@ -79,6 +82,14 @@ body {
 	display: grid;
 	grid-template-rows: 20% 80%;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
+	border-right: 2px solid black;
+}
+
+#grocerymiddle > div {
+	border-right: 4px solid black;
+	border-bottom: 4px solid black;
+	justify-content: center;
+	align-items: center;
 }
 
 .title {
