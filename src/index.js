@@ -170,6 +170,15 @@ function makeGrid(rows, cols) {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 submitbutton.addEventListener("click", () => {
 	crossCheck(getTags());
+	possiblemeals.sort((a, b) => {
+		if (a.name < b.name) {
+			return -1;
+		} else if (a.name > b.name) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}); //alphabetizes the array?
 
 	for (let i = 0; i < possiblemeals.length; i++) {
 		makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
