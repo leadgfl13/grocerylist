@@ -137,17 +137,19 @@ function makeGroceryList() {
 	//convert the middle page to the list of groceries
 	middle.innerHTML = "";
 	middle.setAttribute("id", "grocerymiddle");
-	makeGrid(2, 4);
-
+	makeGrid(2, 6);
 	addmiddleTitle("dairytitle", "title1", "title", "Dairy", "cell00");
 	addmiddleTitle("Produce", "title2", "title", "Produce", "cell01");
-	addmiddleTitle("Bread", "title3", "title", "Breads", "cell02");
-	addmiddleTitle("Meats", "title4", "title", "Meats", "cell03");
-	//for every meal in the list
+	addmiddleTitle("Frozen", "title3", "title", "Frozen", "cell02");
+	addmiddleTitle("Canned", "title4", "title", "Meat", "cell03");
+	addmiddleTitle("Other", "title4", "title", "Other", "cell04");
+	addmiddleTitle("Non-Food", "title4", "title", "Non-Food", "cell05");
 	addListElement(finallist, finallist.ingredients, "produce", "cell11");
 	addListElement(finallist, finallist.ingredients, "dairy", "cell10");
 	addListElement(finallist, finallist.ingredients, "meat", "cell13");
-	addListElement(finallist, finallist.ingredients, "breads", "cell12");
+	addListElement(finallist, finallist.ingredients, "frozen", "cell12");
+	addListElement(finallist, finallist.ingredients, "other", "cell14");
+	addListElement(finallist, finallist.ingredients, "nonfood", "cell15");
 }
 
 function makeGrid(rows, cols) {
@@ -157,25 +159,12 @@ function makeGrid(rows, cols) {
 			const gridItem = document.createElement("div");
 			gridItem.setAttribute("class", "gridlyfe");
 			gridItem.id = `cell${i}${j}`;
+			gridItem.innerHTML = gridItem.id;
 			grid.appendChild(gridItem);
 		}
 	}
 }
 
-function makeGrid2(rows, cols) {
-	middle.innerHTML = "";
-	let grid2 = document.getElementById("middle");
-	grid2.setAttribute("id", "newgrid");
-	for (let i = 0; i < rows; i++) {
-		for (let j = 0; j < cols; j++) {
-			const gridelement = document.createElement("div");
-
-			gridelement.id = `gridel${i}${j}`;
-			gridelement.setAttribute("class", "gridelement");
-			grid2.appendChild(gridelement);
-		}
-	}
-}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 submitbutton.addEventListener("click", () => {
 	crossCheck(getTags());
