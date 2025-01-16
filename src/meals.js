@@ -30,39 +30,44 @@ const wontonwrappers = new Ingredients("Wonton wrappers", "produce");
 const cabbage = new Ingredients("Cabbage", "produce");
 const salmon = new Ingredients("Salmon", "meat");
 const papertowels = new Ingredients("Paper Towels", "nonfood");
+const icecream = new Ingredients("Ice Cream", "frozen");
+const popsicles = new Ingredients("Popsicles", "frozen");
 
-let paperTowels = new Meal("paper towels", ["nonfood"], [papertowels]);
+let paperTowels = new Meal("paper towels", ["nonfood", "all"], [papertowels]);
+let iceCream = new Meal("Ice Cream", ["frozen", "all"], [icecream]);
+let Popsicles = new Meal("Popsicles", ["frozen", "all"], [popsicles]);
+
 let Salmon = new Meal(
 	"Salmon",
-	["fish", "seafood", ",meat", "healthy"],
+	["fish", "seafood", ",meat", "healthy", "all"],
 	[salmon]
 );
 
 let potstickers = new Meal(
 	"Potstickers",
-	["hot", "crispy", "savory", "ethnic"],
+	["hot", "crispy", "savory", "ethnic", "all"],
 	[groundmeat, wontonwrappers, cabbage, carrots, garlic]
 );
 let chicken_soup = new Meal(
 	"Chicken soup",
-	["dinner", "soup", "hot", "chicken"],
+	["dinner", "soup", "hot", "chicken", "all"],
 	[chickenstock, onion, cream, carrots, celery, chicken]
 );
 
 let venison_chili = new Meal(
 	"Venison Chili",
-	["venison", "chili", "hot"],
+	["venison", "chili", "hot", "all"],
 
 	[venison, onion, garlic, chickenstock, chili_beans, diced_tomatoes]
 );
 let marrymechicken = new Meal(
 	"Marry Me Chicken",
-	["chicken", "creamy", "hot"],
+	["chicken", "creamy", "hot", "all"],
 	[chicken, cream, garlic, chickenstock, chili_beans, diced_tomatoes]
 );
 let pasta_fagiole = new Meal(
 	"Pasta_fagiole",
-	["italian", "soup", "hot"],
+	["italian", "soup", "hot", "all"],
 
 	[bacon, onion, garlic, chickenstock, cannelini_beans, tomato_paste]
 );
@@ -74,4 +79,6 @@ const meallist = [
 	potstickers,
 	Salmon,
 	paperTowels,
+	iceCream,
+	Popsicles,
 ];

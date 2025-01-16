@@ -6,7 +6,7 @@ let possiblemeals = [];
 let selectedmeals = [];
 let finallist = [];
 let list_of_meals = document.getElementById("meal_list");
-
+let checkboxes = document.querySelectorAll('input[type="checkbox"]');
 // global variables
 let middle = document.getElementById("middle");
 let createlist = document.getElementById("create_list");
@@ -51,6 +51,14 @@ function crossCheck(taglist) {
 		}
 	}
 	if (possiblemeals.length === 0) {
+		let taglist = [];
+		const checkboxes = document.querySelectorAll(
+			'input[type="checkbox"]:checked'
+		);
+		for (let i = 0; i < checkboxes.length; i++) {
+			checkboxes[i].checked = false;
+		}
+
 		alert("No matches found.  Try a different selection");
 	}
 }
@@ -168,6 +176,26 @@ function makeGrid(rows, cols) {
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//runs the function when a tag is clicked instead of the submit button
+for (let i = 0; i < checkboxes.length; i++) {
+	checkboxes[i].addEventListener("click", () => {
+		crossCheck(getTags());
+		possiblemeals.sort((a, b) => {
+			if (a.name < b.name) {
+				return -1;
+			} else if (a.name > b.name) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}); //alphabetizes the array
+
+		for (let i = 0; i < possiblemeals.length; i++) {
+			makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
+		}
+	});
+}
 submitbutton.addEventListener("click", () => {
 	crossCheck(getTags());
 	possiblemeals.sort((a, b) => {
@@ -178,7 +206,7 @@ submitbutton.addEventListener("click", () => {
 		} else {
 			return 0;
 		}
-	}); //alphabetizes the array?
+	}); //alphabetizes the array
 
 	for (let i = 0; i < possiblemeals.length; i++) {
 		makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
