@@ -28,6 +28,13 @@ const venison = new Ingredients("Venison", "meat");
 const groundmeat = new Ingredients("Ground meat", "meat");
 const wontonwrappers = new Ingredients("Wonton wrappers", "produce");
 const cabbage = new Ingredients("Cabbage", "produce");
+const salmon = new Ingredients("Salmon", "meat");
+
+let Salmon = new Meal(
+	"Salmon",
+	["fish", "seafood", ",meat", "healthy"],
+	[salmon]
+);
 
 let potstickers = new Meal(
 	"Potstickers",
@@ -63,4 +70,5 @@ const meallist = [
 	chicken_soup,
 	pasta_fagiole,
 	potstickers,
+	Salmon,
 ];

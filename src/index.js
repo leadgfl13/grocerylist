@@ -159,7 +159,6 @@ function makeGrid(rows, cols) {
 			const gridItem = document.createElement("div");
 			gridItem.setAttribute("class", "gridlyfe");
 			gridItem.id = `cell${i}${j}`;
-			gridItem.innerHTML = gridItem.id;
 			grid.appendChild(gridItem);
 		}
 	}
