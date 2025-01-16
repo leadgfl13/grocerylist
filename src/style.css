@@ -26,13 +26,14 @@ button {
 	display: flex;
 	align-items: center;
 	background-color: #22577a;
-	color: gold;
+	color: #80ed99;
 	font-size: 36px;
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 	text-decoration: underline;
 	padding-left: 20px;
 }
 #bottom {
+	color: #80ed99;
 	justify-content: center;
 	align-items: center;
 	font-size: 16px;
@@ -52,6 +53,7 @@ button {
 }
 
 #midleft {
+	font-weight: 700;
 	border-right: solid 2px black;
 	display: flex;
 	flex-direction: column;
@@ -59,6 +61,7 @@ button {
 	flex-basis: 20%;
 	flex-shrink: 0;
 	background-color: #57cc99;
+	color: #22577a;
 }
 
 #middle {
@@ -79,7 +82,7 @@ button {
 	flex-grow: 0;
 	flex-shrink: 0;
 	flex-basis: 20%;
-	background-color: #57cc99;
+	background-color: ##c7f9cc;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -111,10 +114,14 @@ button {
 }
 
 #selectionbox {
+	font-weight: 400;
 	font-size: 20px;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 	display: flex;
 	align-items: center;
+	padding: 3px;
 	gap: 8px;
+	color: #22577a;
 }
 
 #groceries,
@@ -135,14 +142,14 @@ button {
 	display: grid;
 	grid-template-rows: 20% 80%;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-	border-right: 2px solid black;
 }
 
 #grocerymiddle > div {
 	align-items: center;
-	border-right: 4px solid black;
-	border-bottom: 4px solid black;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
 }
+
 .gridelement {
 	background-color: burlywood;
 	font-size: 12px;
