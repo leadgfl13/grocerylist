@@ -8,9 +8,14 @@ form {
 }
 
 button {
-	background-color: #c7f9cc;
+	background-color: #22577a;
 	border-radius: 8px;
-	box-shadow: 2px 2px 2px 2px rgb(122, 112, 76);
+	box-shadow: 2px 2px 2px 2px #032034;
+	color: #80ed99;
+}
+
+button:hover {
+	background-color: yellow;
 }
 #mainbody {
 	margin: 0px;
@@ -82,7 +87,7 @@ button {
 	flex-grow: 0;
 	flex-shrink: 0;
 	flex-basis: 20%;
-	background-color: ##c7f9cc;
+	background-color: #57cc99;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -94,9 +99,9 @@ button {
 	justify-content: center;
 	align-items: center;
 	margin: auto;
-	background-color: blanchedalmond;
-	box-shadow: 2px 2px 2px 2px;
-	border: 2px solid brown;
+	background-color: #22577a;
+	box-shadow: 2px 2px 4x 4px;
+	border: 1px solid #06314d;
 }
 
 #meal_list {
@@ -108,7 +113,6 @@ button {
 
 #formcontainer {
 	margin-top: 20px;
-
 	display: flex;
 	flex-direction: column;
 }
@@ -150,19 +154,11 @@ button {
 	border-bottom: 2px solid black;
 }
 
-.gridelement {
-	background-color: burlywood;
-	font-size: 12px;
-	box-shadow: 2px 2px 2px 2px;
-	border: 2px solid green;
-	justify-content: center;
-	align-items: center;
-}
-
 .title {
+	font-weight: 700;
 	text-align: center;
 	font-size: 28px;
-	color: darkgoldenrod;
+	color: #22577a;
 }
 
 #title1 {
@@ -193,7 +189,8 @@ button {
 	text-align: center;
 	font-size: 14px;
 	width: 80%;
-	background-color: #c7f9cc;
+	color: #57cc99;
+	background-color: #22577a;
 	border-radius: 8px;
 	border: 2px solid #82f38d;
 }

@@ -50,6 +50,9 @@ function crossCheck(taglist) {
 			possiblemeals.push(possiblemeal);
 		}
 	}
+	if (possiblemeals.length === 0) {
+		alert("No matches found.  Try a different selection");
+	}
 }
 
 //makes buttons for the meals based on the tags that match

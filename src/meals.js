@@ -29,7 +29,9 @@ const groundmeat = new Ingredients("Ground meat", "meat");
 const wontonwrappers = new Ingredients("Wonton wrappers", "produce");
 const cabbage = new Ingredients("Cabbage", "produce");
 const salmon = new Ingredients("Salmon", "meat");
+const papertowels = new Ingredients("Paper Towels", "nonfood");
 
+let paperTowels = new Meal("paper towels", ["nonfood"], [papertowels]);
 let Salmon = new Meal(
 	"Salmon",
 	["fish", "seafood", ",meat", "healthy"],
@@ -71,4 +73,5 @@ const meallist = [
 	pasta_fagiole,
 	potstickers,
 	Salmon,
+	paperTowels,
 ];
