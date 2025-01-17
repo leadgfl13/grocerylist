@@ -23,50 +23,50 @@ const celery = new Ingredients("celery", "produce");
 const carrots = new Ingredients("carrots", "produce");
 const cannelini_beans = new Ingredients("cannelini_beans", "produce");
 const tomato_paste = new Ingredients("tomato paste", "produce");
-const diced_tomatoes = new Ingredients("Diced Tomatos", "produce");
-const venison = new Ingredients("Venison", "meat");
-const groundmeat = new Ingredients("Ground meat", "meat");
+const diced_tomatoes = new Ingredients("diced tomatos", "produce");
+const venison = new Ingredients("venison", "meat");
+const groundmeat = new Ingredients("ground meat", "meat");
 const wontonwrappers = new Ingredients("Wonton wrappers", "produce");
-const cabbage = new Ingredients("Cabbage", "produce");
-const salmon = new Ingredients("Salmon", "meat");
-const papertowels = new Ingredients("Paper Towels", "nonfood");
-const icecream = new Ingredients("Ice Cream", "frozen");
-const popsicles = new Ingredients("Popsicles", "frozen");
+const cabbage = new Ingredients("cabbage", "produce");
+const salmon = new Ingredients("salmon", "meat");
+const papertowels = new Ingredients("paper towels", "nonfood");
+const icecream = new Ingredients("ice cream", "frozen");
+const popsicles = new Ingredients("popsicles", "frozen");
 
 let paperTowels = new Meal("paper towels", ["nonfood", "all"], [papertowels]);
-let iceCream = new Meal("Ice Cream", ["frozen", "all"], [icecream]);
-let Popsicles = new Meal("Popsicles", ["frozen", "all"], [popsicles]);
+let iceCream = new Meal("ice cream", ["frozen", "all"], [icecream]);
+let Popsicles = new Meal("popsicles", ["frozen", "all"], [popsicles]);
 
 let Salmon = new Meal(
-	"Salmon",
+	"salmon",
 	["fish", "seafood", ",meat", "healthy", "all"],
 	[salmon]
 );
 
 let potstickers = new Meal(
-	"Potstickers",
+	"potstickers",
 	["hot", "crispy", "savory", "ethnic", "all"],
 	[groundmeat, wontonwrappers, cabbage, carrots, garlic]
 );
 let chicken_soup = new Meal(
-	"Chicken soup",
+	"chicken soup",
 	["dinner", "soup", "hot", "chicken", "all"],
 	[chickenstock, onion, cream, carrots, celery, chicken]
 );
 
 let venison_chili = new Meal(
-	"Venison Chili",
+	"venison chili",
 	["venison", "chili", "hot", "all"],
 
 	[venison, onion, garlic, chickenstock, chili_beans, diced_tomatoes]
 );
 let marrymechicken = new Meal(
-	"Marry Me Chicken",
+	"marry me chicken",
 	["chicken", "creamy", "hot", "all"],
 	[chicken, cream, garlic, chickenstock, chili_beans, diced_tomatoes]
 );
 let pasta_fagiole = new Meal(
-	"Pasta_fagiole",
+	"pasta_fagiole",
 	["italian", "soup", "hot", "all"],
 
 	[bacon, onion, garlic, chickenstock, cannelini_beans, tomato_paste]
