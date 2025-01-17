@@ -78,7 +78,7 @@ let potstickers = new Meal(
 let chicken_soup = new Meal(
 	"chicken soup",
 	["dinner", "soup", "hot", "chicken", "all"],
-	[chickenstock, onion, cream, carrots, celery, chicken]
+	[chickenstock, onion, carrots, celery, chicken]
 );
 
 let venison_chili = new Meal(

@@ -27,7 +27,6 @@ function getTags() {
 		taglist.push(checkboxes[i].value);
 	}
 	if (taglist.length == 0) {
-		alert("Please make a selection");
 		return;
 	} else {
 		return taglist;
@@ -60,8 +59,6 @@ function crossCheck(taglist) {
 		for (let i = 0; i < checkboxes.length; i++) {
 			checkboxes[i].checked = false;
 		}
-
-		alert("No matches found.  Try a different selection");
 	}
 }
 
@@ -113,6 +110,7 @@ function displayMeals() {
 		});
 		finalbutton.addEventListener("click", () => {
 			finallist.splice([i], 1);
+			console.log(finallist);
 			displayMeals();
 		});
 	}
@@ -129,9 +127,10 @@ function addmiddleTitle(doc, id, cls, inner, cell) {
 }
 
 function addListElement(finalingredients, location, cell) {
+	let produce = document.getElementById(cell); //gets the cell and assigns it a name
+	produce.innerHTML = "";
 	for (let j = 0; j < finalingredients.length; j++) {
 		if (finalingredients[j].location === location) {
-			let produce = document.getElementById(cell); //gets the cell and assigns it a name
 			let produceitem = document.createElement("button");
 			produceitem.setAttribute("class", "listitems");
 			produceitem.innerHTML = finalingredients[j].name;
@@ -143,9 +142,11 @@ function addListElement(finalingredients, location, cell) {
 		}
 	}
 }
-
 function makeGroceryList() {
-	//convert the middle page to the list of groceries
+	//need to clear the innerHTML of the grocerymiddle cells
+	finalingredients = [];
+	console.log(finallist);
+	let grocerymiddle = document.getElementById("grocerymiddle");
 	middle.innerHTML = "";
 	for (let i = 0; i < finallist.length; i++) {
 		for (let j = 0; j < finallist[i].ingredients.length; j++) {
