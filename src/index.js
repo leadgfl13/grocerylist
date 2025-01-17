@@ -5,6 +5,8 @@ let possiblemeals = [];
 //acts as the array to hold meals that are selected as possible options, stores them as the full objects
 let selectedmeals = [];
 let finallist = [];
+let finalingredients = [];
+
 let list_of_meals = document.getElementById("meal_list");
 let checkboxes = document.querySelectorAll('input[type="checkbox"]');
 // global variables
@@ -126,20 +128,18 @@ function addmiddleTitle(doc, id, cls, inner, cell) {
 	box.append(doc);
 }
 
-function addListElement(finallist, ingredients, location, cell) {
-	for (let i = 0; i < finallist.length; i++) {
-		for (let j = 0; j < finallist[i].ingredients.length; j++) {
-			if (finallist[i].ingredients[j].location === location) {
-				let produce = document.getElementById(cell); //gets the cell and assigns it a name
-				let produceitem = document.createElement("button");
-				produceitem.setAttribute("class", "listitems");
-				produceitem.innerHTML = finallist[i].ingredients[j].name;
-				produceitem.addEventListener("click", () => {
-					produceitem.remove();
-				});
+function addListElement(finalingredients, location, cell) {
+	for (let j = 0; j < finalingredients.length; j++) {
+		if (finalingredients[j].location === location) {
+			let produce = document.getElementById(cell); //gets the cell and assigns it a name
+			let produceitem = document.createElement("button");
+			produceitem.setAttribute("class", "listitems");
+			produceitem.innerHTML = finalingredients[j].name;
+			produceitem.addEventListener("click", () => {
+				produceitem.remove();
+			});
 
-				produce.append(produceitem);
-			}
+			produce.append(produceitem);
 		}
 	}
 }
@@ -147,6 +147,26 @@ function addListElement(finallist, ingredients, location, cell) {
 function makeGroceryList() {
 	//convert the middle page to the list of groceries
 	middle.innerHTML = "";
+	for (let i = 0; i < finallist.length; i++) {
+		for (let j = 0; j < finallist[i].ingredients.length; j++) {
+			finalingredients.push(finallist[i].ingredients[j]);
+		}
+	}
+	console.log(finalingredients);
+
+	finalingredients.sort((a, b) => {
+		if (a.name < b.name) {
+			return -1;
+		} else if (a.name > b.name) {
+			return 1;
+		} else {
+			return 0;
+		}
+	});
+	for (let i = 0; i < finalingredients.length; i++) {
+		console.log(finalingredients[i].name);
+	}
+	console.log(finallist);
 	middle.setAttribute("id", "grocerymiddle");
 	makeGrid(2, 6);
 	addmiddleTitle("dairytitle", "title1", "title", "Dairy", "cell00");
@@ -155,12 +175,12 @@ function makeGroceryList() {
 	addmiddleTitle("Canned", "title4", "title", "Meat", "cell03");
 	addmiddleTitle("Other", "title4", "title", "Other", "cell04");
 	addmiddleTitle("Non-Food", "title4", "title", "Non-Food", "cell05");
-	addListElement(finallist, finallist.ingredients, "produce", "cell11");
-	addListElement(finallist, finallist.ingredients, "dairy", "cell10");
-	addListElement(finallist, finallist.ingredients, "meat", "cell13");
-	addListElement(finallist, finallist.ingredients, "frozen", "cell12");
-	addListElement(finallist, finallist.ingredients, "other", "cell14");
-	addListElement(finallist, finallist.ingredients, "nonfood", "cell15");
+	addListElement(finalingredients, "produce", "cell11");
+	addListElement(finalingredients, "dairy", "cell10");
+	addListElement(finalingredients, "meat", "cell13");
+	addListElement(finalingredients, "frozen", "cell12");
+	addListElement(finalingredients, "other", "cell14");
+	addListElement(finalingredients, "nonfood", "cell15");
 }
 
 function makeGrid(rows, cols) {
@@ -196,6 +216,10 @@ for (let i = 0; i < checkboxes.length; i++) {
 		}
 	});
 }
+groceries.addEventListener("click", () => {
+	makeGroceryList();
+});
+
 submitbutton.addEventListener("click", () => {
 	crossCheck(getTags());
 	possiblemeals.sort((a, b) => {
@@ -211,8 +235,4 @@ submitbutton.addEventListener("click", () => {
 	for (let i = 0; i < possiblemeals.length; i++) {
 		makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
 	}
-});
-
-groceries.addEventListener("click", () => {
-	makeGroceryList();
 });
