@@ -38,8 +38,15 @@ const dishsoap = new Ingredients("dishsoap", "nonfood");
 const laundrydetergent = new Ingredients("laundry detergent", "nonfood");
 const dishwasher_pods = new Ingredients("dishwasher pods", "nonfood");
 const chips = new Ingredients("chips", "other");
+const advil = new Ingredients("advil", "nonfood");
 
-let Chips = new Meal("Chips", ["nonfood", "all", "snacks"], chips);
+let macaroniandcheese = new Meal(
+	"macaroni and cheese",
+	["all", "hot", "creamy"],
+	napkins
+);
+let Advil = new Meal("advil", ["nonfood", "all"]);
+let Chips = new Meal("chips", ["nonfood", "all", "snacks"], chips);
 let Napkins = new Meal("napkins", ["nonfood", "all"], napkins);
 let Handsoap = new Meal("handsoap", ["nonfood", "all"], handsoap);
 let Dishsoap = new Meal("dishsoap", ["nonfood", "all"], dishsoap);
@@ -107,4 +114,6 @@ const meallist = [
 	Handsoap,
 	Dishsoap,
 	Chips,
+	Advil,
+	macaroniandcheese,
 ];
