@@ -26,13 +26,33 @@ const tomato_paste = new Ingredients("tomato paste", "produce");
 const diced_tomatoes = new Ingredients("diced tomatos", "produce");
 const venison = new Ingredients("venison", "meat");
 const groundmeat = new Ingredients("ground meat", "meat");
-const wontonwrappers = new Ingredients("Wonton wrappers", "produce");
+const wontonwrappers = new Ingredients("wonton wrappers", "produce");
 const cabbage = new Ingredients("cabbage", "produce");
 const salmon = new Ingredients("salmon", "meat");
 const papertowels = new Ingredients("paper towels", "nonfood");
 const icecream = new Ingredients("ice cream", "frozen");
 const popsicles = new Ingredients("popsicles", "frozen");
+const napkins = new Ingredients("napkins", "nonfood");
+const handsoap = new Ingredients("handsoap", "nonfood");
+const dishsoap = new Ingredients("dishsoap", "nonfood");
+const laundrydetergent = new Ingredients("laundry detergent", "nonfood");
+const dishwasher_pods = new Ingredients("dishwasher pods", "nonfood");
+const chips = new Ingredients("chips", "other");
 
+let Chips = new Meal("Chips", ["nonfood", "all", "snacks"], chips);
+let Napkins = new Meal("napkins", ["nonfood", "all"], napkins);
+let Handsoap = new Meal("handsoap", ["nonfood", "all"], handsoap);
+let Dishsoap = new Meal("dishsoap", ["nonfood", "all"], dishsoap);
+let Laundrydetergent = new Meal(
+	"laundrydetergent",
+	["nonfood", "all"],
+	laundrydetergent
+);
+let dishwasherpods = new Meal(
+	"dishwasher popds",
+	["nonfood", "all"],
+	dishwasher_pods
+);
 let paperTowels = new Meal("paper towels", ["nonfood", "all"], [papertowels]);
 let iceCream = new Meal("ice cream", ["frozen", "all"], [icecream]);
 let Popsicles = new Meal("popsicles", ["frozen", "all"], [popsicles]);
@@ -81,4 +101,10 @@ const meallist = [
 	paperTowels,
 	iceCream,
 	Popsicles,
+	Napkins,
+	Laundrydetergent,
+	dishwasherpods,
+	Handsoap,
+	Dishsoap,
+	Chips,
 ];

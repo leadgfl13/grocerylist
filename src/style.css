@@ -46,8 +46,9 @@ button:hover {
 }
 
 #mid {
-	flex-shrink: 0;
 	overflow-y: auto;
+	flex-grow: 0;
+	flex-shrink: 0;
 	flex-basis: 60%;
 	background-color: #57cc99;
 	display: flex;
@@ -66,12 +67,12 @@ button:hover {
 	justify-content: space-between;
 	flex-basis: 20%;
 	flex-shrink: 0;
+	flex-grow: 0;
 	background-color: #57cc99;
 	color: #22577a;
 }
 
 #middle {
-	overflow-y: auto;
 	flex-shrink: 0;
 	flex-grow: 0;
 	flex-basis: 60%;
@@ -148,7 +149,10 @@ button:hover {
 }
 
 #groceries {
-	margin-left: 30px;
+	position: fixed;
+	bottom: 160px;
+	right: 45px;
+	width: 200px;
 }
 #grocerymiddle {
 	width: 100%;
