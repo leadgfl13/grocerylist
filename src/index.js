@@ -207,42 +207,26 @@ for (let i = 0; i < checkboxes.length; i++) {
 		let test = document.getElementById("grocerymiddle");
 		if (test) {
 			test.innerHTML = "";
-
 			test.setAttribute("id", "middle");
-			{
-				crossCheck(getTags());
-				possiblemeals.sort((a, b) => {
-					if (a.name < b.name) {
-						return -1;
-					} else if (a.name > b.name) {
-						return 1;
-					} else {
-						return 0;
-					}
-				}); //alphabetizes the array
-
-				for (let i = 0; i < possiblemeals.length; i++) {
-					makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
-				}
-			}
-		} else {
-			crossCheck(getTags());
-			possiblemeals.sort((a, b) => {
-				if (a.name < b.name) {
-					return -1;
-				} else if (a.name > b.name) {
-					return 1;
-				} else {
-					return 0;
-				}
-			}); //alphabetizes the array
-
-			for (let i = 0; i < possiblemeals.length; i++) {
-				makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
-			}
 		}
-	});
+		crossCheck(getTags());
+		possiblemeals.sort((a, b) => {
+			if (a.name < b.name) {
+				return -1;
+			} else if (a.name > b.name) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}); //alphabetizes the array
+
+		for (let i = 0; i < possiblemeals.length; i++) {
+			makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
+		}
+	}); //alphabetizes the array
 }
+
+//groceries button
 groceries.addEventListener("click", () => {
 	makeGroceryList();
 });
