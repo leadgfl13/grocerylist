@@ -9,6 +9,7 @@ let finalingredients = [];
 
 let list_of_meals = document.getElementById("meal_list");
 let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
 // global variables
 let middle = document.getElementById("middle");
 let createlist = document.getElementById("create_list");
@@ -146,7 +147,7 @@ function makeGroceryList() {
 	//need to clear the innerHTML of the grocerymiddle cells
 	finalingredients = [];
 	console.log(finallist);
-	let grocerymiddle = document.getElementById("grocerymiddle");
+
 	middle.innerHTML = "";
 	for (let i = 0; i < finallist.length; i++) {
 		for (let j = 0; j < finallist[i].ingredients.length; j++) {
@@ -198,22 +199,31 @@ function makeGrid(rows, cols) {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ACTUAL EXECUTING CODE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+//change the mid div back to grocerymidd if the checkbox is clicked
+
 //runs the function when a tag is clicked instead of the submit button
 for (let i = 0; i < checkboxes.length; i++) {
 	checkboxes[i].addEventListener("click", () => {
-		crossCheck(getTags());
-		possiblemeals.sort((a, b) => {
-			if (a.name < b.name) {
-				return -1;
-			} else if (a.name > b.name) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}); //alphabetizes the array
+		let test = document.getElementById("grocerymiddle");
+		if (test) {
+			test.innerHTML = "";
 
-		for (let i = 0; i < possiblemeals.length; i++) {
-			makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
+			test.setAttribute("id", "middle");
+		} else {
+			crossCheck(getTags());
+			possiblemeals.sort((a, b) => {
+				if (a.name < b.name) {
+					return -1;
+				} else if (a.name > b.name) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}); //alphabetizes the array
+
+			for (let i = 0; i < possiblemeals.length; i++) {
+				makeElement("button", "possiblemeal", middle, possiblemeals[i].name);
+			}
 		}
 	});
 }

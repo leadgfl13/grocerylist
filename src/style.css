@@ -154,7 +154,7 @@ button:hover {
 }
 
 #grocerymiddle {
-	width: 100%;
+	width: 900px;
 	display: grid;
 	grid-template-rows: 20% 80%;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
