@@ -94,7 +94,6 @@ function Remove(thingy) {
 //displays the meals in finallist as buttons
 function displayMeals() {
 	list_of_meals.innerHTML = "";
-	console.log("This is the begininning of display meals " + finallist);
 	for (let i = 0; i < finallist.length; i++) {
 		let finalbutton = document.createElement("button");
 		finalbutton.setAttribute("class", "listmeal");
@@ -102,6 +101,7 @@ function displayMeals() {
 		finalbutton.innerHTML = finallist[i].name;
 		list_of_meals.append(finalbutton);
 		finalbutton.addEventListener("mouseover", () => {
+			finalbutton.innerHTML += ": ";
 			for (let j = 0; j < finallist[i].ingredients.length; j++) {
 				finalbutton.innerHTML += finallist[i].ingredients[j].name + " ";
 			}
